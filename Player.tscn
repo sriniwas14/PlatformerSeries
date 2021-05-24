@@ -1,0 +1,57 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Run-4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Idle-1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Jump-2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Idle-3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Jump-1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Idle-2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Run-5.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Run-3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Run-1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Run-2.png" type="Texture" id=11]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 53.3843
+height = 78.5988
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 7 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "jump",
+"speed": 12.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 372, 298 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = -500
